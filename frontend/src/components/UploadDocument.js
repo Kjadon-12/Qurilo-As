@@ -12,22 +12,24 @@ const UploadDocument = ({ onAdd, onDelete, index }) => {
     <div className="row mb-4">
       
       <div className="col-lg-4 col-md-12 col-sm-12">
-        <label className="text-muted">File Name*</label>
+        <label className="text-muted">File Name <span className="req-star">*</span></label>
         <br />
         <input
           type="text"
           value={fileName}
           onChange={(e) => setFileName(e.target.value)}
           className="text-input"
+          required
         ></input>
       </div>
       <div className="col-lg-3 col-md-12 col-sm-12">
-        <label className="text-muted">Type of file*</label>
+        <label className="text-muted">Type of file <span className="req-star">*</span></label>
         <br />
         <select
           value={fileType}
           onChange={handleFileTypeChange}
           className="text-input"
+          required
         >
           <option value="" disabled>
             Select Type
@@ -38,12 +40,13 @@ const UploadDocument = ({ onAdd, onDelete, index }) => {
         <div className="text-muted">(image,pdf)</div>
       </div>
       <div className="col-lg-4 col-md-12 col-sm-12">
-        <label className="text-muted">Upload File*</label>
+        <label className="text-muted">Upload File <span className="req-star">*</span></label>
         <br />
         <input
           type="file"
           onChange={(e) => setFile(e.target.value)}
           className="text-input"
+          required
         ></input>
       </div>
       <div className="col-lg-1 col-md-12 col-sm-12">

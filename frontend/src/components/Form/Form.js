@@ -3,6 +3,7 @@ import UploadDocument from "../UploadDocument";
 
 const Form = () => {
     const [documentRows, setDocumentRows] = useState([0, 1]); // Initialize with two rows
+    const [isPermanentSameAsResidential, setIsPermanentSameAsResidential] = useState(false);
 
   const addDocumentRow = () => {
     setDocumentRows([...documentRows, documentRows.length]);
@@ -18,7 +19,7 @@ const Form = () => {
         <form>
           <div className="row mb-4">
             <div className="col-lg-6 col-md-12 col-sm-12">
-              <label>First Name*</label>
+              <label>First Name <span className="req-star">*</span></label>
               <br />
               <input
                 type="text"
@@ -28,32 +29,35 @@ const Form = () => {
               ></input>
             </div>
             <div className="col-lg-6 col-md-12 col-sm-12">
-              <label>Last Name*</label>
+              <label>Last Name <span className="req-star">*</span></label>
               <br />
               <input
                 type="text"
                 className="text-input"
                 placeholder="Enter your last name here..."
+                required='true'
               ></input>
             </div>
           </div>
           <div className="row mb-4">
             <div className="col-lg-6 col-md-12 col-sm-12">
-              <label>E-mail*</label>
+              <label>E-mail <span className="req-star">*</span></label>
               <br />
               <input
                 type="email"
                 className="text-input"
                 placeholder="ex:myname@example.com"
+                required
               ></input>
             </div>
             <div className="col-lg-6 col-md-12 col-sm-12">
-              <label>Date of Birth*</label>
+              <label>Date of Birth <span className="req-star">*</span></label>
               <br />
               <input
                 type="date"
                 className="text-input"
                 placeholder="Enter your last name here..."
+                required
               ></input>
               <div>(Min. age should be 18 years)</div>
             </div>
@@ -61,31 +65,31 @@ const Form = () => {
           <div className="row mb-4">
             <label className="mb-2">Residential Address</label>
             <div className="col-lg-6 col-md-12 col-sm-12">
-              <label className="text-muted">Street 1*</label>
+              <label className="text-muted">Street 1 <span className="req-star">*</span></label>
               <br />
-              <input type="text" className="text-input"></input>
+              <input type="text" className="text-input" required></input>
             </div>
             <div className="col-lg-6 col-md-12 col-sm-12">
-              <label className="text-muted">Street 2*</label>
+              <label className="text-muted">Street 2 <span className="req-star">*</span></label>
               <br />
-              <input type="text" className="text-input"></input>
+              <input type="text" className="text-input" required></input>
             </div>
           </div>
           <div className="my-2">
-            <input type="checkbox"></input>{" "}
+            <input type="checkbox" onChange={()=>setIsPermanentSameAsResidential(!isPermanentSameAsResidential)} ></input>{"   "}
             <label> Same as Residential Address</label>
           </div>
           <div className="row mb-4">
             <label>Permanent Address</label>
             <div className="col-lg-6 col-md-12 col-sm-12">
-              <label className="text-muted">Street 1*</label>
+              <label className="text-muted">Street 1{!isPermanentSameAsResidential && <span className="req-star">*</span>}</label>
               <br />
-              <input type="text" className="text-input"></input>
+              <input type="text" className="text-input" required={!isPermanentSameAsResidential}></input>
             </div>
             <div className="col-lg-6 col-md-12 col-sm-12">
-              <label className="text-muted">Street 2*</label>
+              <label className="text-muted">Street 2 {!isPermanentSameAsResidential && <span className="req-star">*</span>}</label>
               <br />
-              <input type="text" className="text-input"></input>
+              <input type="text" className="text-input" required={!isPermanentSameAsResidential}></input>
             </div>
           </div>
 
