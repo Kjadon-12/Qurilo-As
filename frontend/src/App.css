@@ -1,0 +1,24 @@
+.form{
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.container-form{
+  width: 64%;
+  margin: 0 auto;
+}
+.text-input{
+  width:100%;
+  margin-top: 4px;
+  height: 42px;
+  padding: 3px;
+}
+label{
+  font-size:large;
+  font-weight: bolder;
+}
+
+.add-Doc{
+  width: auto !important;
+    position: absolute;
+    
+    left: 70%;
+}
