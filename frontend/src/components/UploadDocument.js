@@ -1,13 +1,24 @@
 import React, { useState } from "react";
 
-const UploadDocument = ({ onAdd, onDelete, index }) => {
-  const [file, setFile] = useState("");
-  const [fileName, setFileName] = useState("");
+const UploadDocument = ({ onAdd, onDelete, index , onFileChange , formData}) => {
   const [fileType, setFileType] = useState("");
+  const [fileName, setFileName] = useState('')
+
   const handleFileTypeChange = (e) => {
     setFileType(e.target.value);
   };
 
+  const handleFileUpload = (e) => {
+    const uploadedFile = e.target.files[0];
+    const updatedDocuments = [...formData.documents];
+    updatedDocuments[index] = {
+      ...updatedDocuments[index],
+      uploadedFile: uploadedFile,
+      fileName: fileName,
+      fileType: fileType,
+    };
+    onFileChange(updatedDocuments[index], index);
+  };
   return (
     <div className="row mb-4">
       
@@ -44,7 +55,7 @@ const UploadDocument = ({ onAdd, onDelete, index }) => {
         <br />
         <input
           type="file"
-          onChange={(e) => setFile(e.target.value)}
+          onChange={handleFileUpload}
           className="text-input"
           required
         ></input>
