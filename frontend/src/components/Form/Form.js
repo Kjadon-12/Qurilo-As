@@ -35,6 +35,9 @@ const Form = () => {
     }
     const updatedRows = documentRows.filter((rowIndex) => rowIndex !== index);
     setDocumentRows(updatedRows);
+    const updatedDocuments = [...formData.documents];
+    updatedDocuments.splice(index, 1);
+    setFormData({ ...formData, documents: updatedDocuments });
   };
 
 // Function to handle changes in text inputs
