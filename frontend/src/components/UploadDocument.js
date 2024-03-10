@@ -1,23 +1,23 @@
 import React, { useState } from "react";
 
-const UploadDocument = ({ onAdd, onDelete, index , onFileChange , formData}) => {
+const UploadDocument = ({ onDelete, index  , formData ,setFormData}) => {
   const [fileType, setFileType] = useState("");
-  const [fileName, setFileName] = useState('')
+  const [fileName, setFileName] = useState("");
 
   const handleFileTypeChange = (e) => {
     setFileType(e.target.value);
   };
 
   const handleFileUpload = (e) => {
-    const uploadedFile = e.target.files[0];
+    console.log(e.target.files)
+   
     const updatedDocuments = [...formData.documents];
     updatedDocuments[index] = {
-      ...updatedDocuments[index],
-      uploadedFile: uploadedFile,
+      uploadedFile: e.target.files[0],
       fileName: fileName,
       fileType: fileType,
     };
-    onFileChange(updatedDocuments[index], index);
+    setFormData({ ...formData, documents: updatedDocuments });
   };
   return (
     <div className="row mb-4">
