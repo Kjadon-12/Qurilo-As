@@ -128,7 +128,7 @@ const Form = () => {
 
           // console.log(formData);
           const response = await axios.post(
-            "https://qurilo-as.onrender.com",
+            "https://qurilo-as.onrender.com/v1/form",
             formDataToSend,
             {
               headers: {
