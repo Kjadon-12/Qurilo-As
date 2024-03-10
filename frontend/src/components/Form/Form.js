@@ -6,6 +6,7 @@ const Form = () => {
   const [ageWarn, setAgeWarn] = useState(false);
   const [isPermanentSameAsResidential, setIsPermanentSameAsResidential] =
     useState(false);
+    
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -32,7 +33,8 @@ const Form = () => {
 
   const deleteDocumentRow = (index) => {
     if (documentRows?.length === 2) {
-      console.log("can not delete document");
+      // console.log("can not delete document");
+      alert("Note: Minimum 2 documents required , so can not delete")
       return;
     }
     const updatedRows = documentRows.filter((rowIndex) => rowIndex !== index);
@@ -62,13 +64,29 @@ const Form = () => {
     if (age < 18 || dobDate.toString() === "Invalid Date") {
      
       setAgeWarn(true);
-      console.log("Age should be at least 18 years");
+      // console.log("Age should be at least 18 years");
       setFormData({
         ...formData,
         dob: "",
       });
       return;
-    } else {
+    }
+    // console.log(formData)
+    // Check if uploadedFile and fileType match for each document
+  const isValid = formData.documents.filter((document) => {
+      
+     return document.uploadedFile.type.split('/').includes(document.fileType)
+  }
+  );
+  // console.log(isValid)
+  if (isValid.length !== formData.documents.length) {
+    alert("Please select files with the correct file type for each document.");
+    return;
+  }
+    
+    
+    
+    
       
       const postData = async () => {
         try {
@@ -107,11 +125,8 @@ const Form = () => {
               }
           });
          
-// // Log formDataToSend to verify its contents
-// for (var pair of formDataToSend.entries()) {
-//   console.log(pair[0] + ', ' + pair[1]);
-// }
-          console.log(formData);
+
+          // console.log(formData);
           const response = await axios.post(
             "http://localhost:8000/v1/form",
             formDataToSend,
@@ -121,7 +136,8 @@ const Form = () => {
               },
             }
           );
-          // console.log(response);
+          // console.log(response)
+          alert(`message from Backend: ${response.data} , Thanks!`);
           // Reset the form after successful submission
     setFormData({
       firstName: "",
@@ -150,7 +166,7 @@ const Form = () => {
         }
       };
       postData();
-    }
+    
 
    
   };

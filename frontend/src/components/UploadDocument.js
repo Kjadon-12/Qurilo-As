@@ -9,7 +9,7 @@ const UploadDocument = ({ onDelete, index  , formData ,setFormData}) => {
   };
 
   const handleFileUpload = (e) => {
-    console.log(e.target.files)
+    // console.log(e.target.files)
    
     const updatedDocuments = [...formData.documents];
     updatedDocuments[index] = {
