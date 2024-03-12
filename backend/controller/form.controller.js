@@ -7,6 +7,7 @@ const Form = require("../model/form.model");
 
 const formSubmit = async (req, res) => {
   try {
+    console.log(req)
     console.log(req.body);
     console.log(req.files);
     // console.log(req.headers)
@@ -40,11 +41,11 @@ const formSubmit = async (req, res) => {
           street1: permanentAddress.street1,
           street2: permanentAddress.street2,
         },
-        documents: req.body.documents.map((document) => ({
-          uploadedFile: document.uploadedFile,
-          fileName: document.fileName,
-          fileType: document.fileType,
-        })),
+        // documents: req.body.documents.map((document) => ({
+        //   uploadedFile: document.uploadedFile,
+        //   fileName: document.fileName,
+        //   fileType: document.fileType,
+        // })),
       });
 
       console.log(formData);

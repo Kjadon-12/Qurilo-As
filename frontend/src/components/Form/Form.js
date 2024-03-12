@@ -173,7 +173,7 @@ const Form = () => {
   return (
     <>
       <div className="form container-form mt-5 p-3">
-        <form onSubmit={handleSubmit} encType="multipart/form-data">
+        <form onSubmit={handleSubmit}>
           <div className="row mb-4">
             <div className="col-lg-6 col-md-12 col-sm-12">
               <label>
